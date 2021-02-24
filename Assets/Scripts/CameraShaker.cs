@@ -22,7 +22,7 @@ public class CameraShaker : MonoBehaviour
     void Update()
     {
         jumpInput = Input.GetAxis("Jump");
-        if (jumpInput > 0) return;
+        if (Mathf.Abs(jumpInput) > Mathf.Epsilon) return;
 
         // stiti ako je 0
         float cycles = Time.time / period; // raste kontinuirano od nule

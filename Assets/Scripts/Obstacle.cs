@@ -2,25 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : MonoBehaviour//trenutacno ova skripta nema svrhe
 {
-    PlayerMovement playerMovement;
+    
+    int hitCounter = 0;
 
     void Start()
     {
-        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
+        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.name == "Player")
         {
-            playerMovement.Die();
+            hitCounter++;
+            //if(hitCounter == 1)
+            //pusti ouch ili tako nesto
+           // if (hitCounter == 2)
+               // playerMovement.Die();
         }
     }
 
     void Update()
     {
         
+            //Debug.Log(hitCounter);
     }
 }

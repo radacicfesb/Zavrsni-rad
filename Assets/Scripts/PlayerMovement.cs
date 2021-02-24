@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 100f;
 
     bool alive = true;
-
+   
     private void FixedUpdate()//zovemo fixed update jer se zove 50 puta u sekundi da bi malo bolju kontrolu nad fizikon
     {
         if (!alive) return;
@@ -45,4 +45,6 @@ public class PlayerMovement : MonoBehaviour
         alive = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);//ucitat ce odma ovu scenu al prominit cu to kasnije
     }
+
+    
 }
