@@ -56,5 +56,8 @@ public class PlayerSounds : MonoBehaviour
                 //odsviraj neki zvuk ka da je umra ili tako nesto
                 playerMovement.Die();
         }
+
+        if (collision.gameObject.tag == "Pickaxe") //i nema nijedan pickaxe u intventoryu
+            hitCounter--;
     }
 }

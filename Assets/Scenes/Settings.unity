@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 840255044780900864}
-  defaultVolume: 0.6
+  defaultVolume: 0.3
 --- !u!4 &1992164137
 Transform:
   m_ObjectHideFlags: 0

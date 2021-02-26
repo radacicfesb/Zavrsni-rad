@@ -12,6 +12,9 @@ public class PathSpawner : MonoBehaviour
     Vector3 nextSpawnPoint;
     Vector3 nextLeftSpawnPoint;
     Vector3 nextRightSpawnPoint;
+
+    int tilesCounter = 0;
+
     void Start()
     {
         for (int i = 0; i < 15; i++)//popravi posli ovaj 15, mozda digne fps ako ih  se manje spawna na pocetku
@@ -32,11 +35,18 @@ public class PathSpawner : MonoBehaviour
         nextSpawnPoint = temp.transform.GetChild(1).transform.position;
         temp.transform.SetParent(ground);
 
+        tilesCounter++;
+
         if (spawnItems)
         {
             temp.GetComponent<GroundTile>().SpawnObstacle();
-
         }
+
+        if(tilesCounter % 10 == 0)
+        {
+            temp.GetComponent<GroundTile>().SpawnPickUps();//svaki 10. tile spawna pickup
+        }
+
         temp.GetComponent<GroundTile>().SpawnLeftStuff();
         temp.GetComponent<GroundTile>().SpawnRightStuff();
     }
