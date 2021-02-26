@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour//trenutacno ova skripta nema svrhe
         {
             hitCounter++;
             //if(hitCounter == 1)
-            //pusti ouch ili tako nesto
+            
            // if (hitCounter == 2)
                // playerMovement.Die();
         }
