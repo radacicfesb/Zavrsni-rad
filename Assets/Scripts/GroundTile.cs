@@ -8,7 +8,7 @@ public class GroundTile : MonoBehaviour
     [SerializeField] GameObject[] obstaclePrefabs;
     [SerializeField] GameObject[] leftSpawningStuff;
     [SerializeField] GameObject[] rightSpawningStuff;
-    [SerializeField] GameObject pickUpStuff;
+    [SerializeField] GameObject[] pickUpStuff;
 
 
     void Start()
@@ -58,7 +58,7 @@ public class GroundTile : MonoBehaviour
     public void SpawnPickUps()
     {
         Transform spawningPickUp = transform.GetChild(12).transform;
-        GameObject pickUp = Instantiate(pickUpStuff, spawningPickUp.position, Quaternion.identity) as GameObject;
+        GameObject pickUp = Instantiate(pickUpStuff[Random.Range(0, pickUpStuff.Length)], spawningPickUp.position, Quaternion.identity) as GameObject;
         pickUp.transform.SetParent(spawningPickUp);
     }
 }

@@ -16,7 +16,7 @@ public class PlayerSounds : MonoBehaviour
     bool jumpInput;
 
     PlayerMovement playerMovement;
-    int hitCounter = 0;
+    public int hitCounter = 0;//samo da mi se vidi u inspectoru
     void Start()
     {
         audios = GetComponent<AudioSource>();
@@ -57,7 +57,12 @@ public class PlayerSounds : MonoBehaviour
                 playerMovement.Die();
         }
 
-        if (collision.gameObject.tag == "Pickaxe") //i nema nijedan pickaxe u intventoryu
-            hitCounter--;
     }
+
+   // private void OnTriggerEnter(Collider other)
+    //{
+
+      //  if (other.gameObject.tag == "Pickaxe" && hitCounter == 1) //i nema nijedan pickaxe u intventoryu
+        //    hitCounter--;
+    //}
 }

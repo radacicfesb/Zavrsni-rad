@@ -271,7 +271,11 @@ MonoBehaviour:
   - {fileID: 1276113068307054, guid: 139dd5681ad53a84fab5db7f67bd7de2, type: 3}
   - {fileID: 1977261233423868, guid: 2cebbe72b3420fb47b0861343e1b0a46, type: 3}
   - {fileID: 1743542827347818, guid: 58cd80e8735394b41ad92a2458c90f9a, type: 3}
-  pickUpStuff: {fileID: 108562, guid: e1239991fa745f64a9ef787ae6db26a2, type: 3}
+  pickUpStuff:
+  - {fileID: 108562, guid: e1239991fa745f64a9ef787ae6db26a2, type: 3}
+  - {fileID: 159330, guid: 18c7f6b8eb5793f49a8f6d81d2e01b43, type: 3}
+  - {fileID: 3183632419763667398, guid: f3cfb447b2dc87f45a292877cdba97f3, type: 3}
+  - {fileID: 2084126117337606776, guid: 63eeb384bf273d74582ebfdaf00e3938, type: 3}
 --- !u!1 &3921110016705878401
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5279553828751612168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.46, y: 0, z: 2.05}
+  m_LocalPosition: {x: -1.46, y: 1.4, z: 2.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3164567543220160759}

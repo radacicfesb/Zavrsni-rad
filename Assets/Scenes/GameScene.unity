@@ -141,6 +141,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1009033940}
+  playerMovement: {fileID: 228385377}
+--- !u!114 &228385377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1964363513, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
+  m_PrefabInstance: {fileID: 988798134904140654}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228385375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f58cdd14e3ade34caf1a1588e8e7e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &228385378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228385375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6272768ef5e46894e9a078d30efa1f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpSFX: {fileID: 8300000, guid: d04ea372c9829384481825a5c56e06ea, type: 3}
 --- !u!82 &228385380
 AudioSource:
   m_ObjectHideFlags: 0
@@ -254,6 +279,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  hitCounter: 0
 --- !u!850595691 &313779562
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -793,6 +819,10 @@ PrefabInstance:
     - target: {fileID: 1964363513, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964363513, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
+      propertyPath: speedIncreasePerSeconds
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 6346442695165741731, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
       propertyPath: m_LocalPosition.x

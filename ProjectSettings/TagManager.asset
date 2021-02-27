@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Obstacle
   - Pickaxe
+  - Beer
+  - Black Clock
+  - Gold Clock
   layers:
   - Default
   - TransparentFX
