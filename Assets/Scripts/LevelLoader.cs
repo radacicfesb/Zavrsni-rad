@@ -6,6 +6,7 @@ public class LevelLoader : MonoBehaviour
 {
     int currentSceneIndex;
 
+    PlayerMovement playerMovement;
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -13,6 +14,7 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(LoadStartScene());
         }
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     IEnumerator LoadStartScene()
@@ -49,5 +51,11 @@ public class LevelLoader : MonoBehaviour
     public void LoadSettingsScene()
     {
         SceneManager.LoadScene("Settings");
+    }
+
+    public void TryAgainButton()
+    {
+        playerMovement.scoreCanvas.SetActive(false);
+        SceneManager.LoadScene("GameScene");
     }
 }

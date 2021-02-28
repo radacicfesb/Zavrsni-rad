@@ -7,12 +7,12 @@ public class PowerUps : MonoBehaviour
     Timer timer;
     PlayerSounds playerSounds;
     [SerializeField] AudioClip powerUpSFX;
-    AudioSource audioSource;
+    
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
         playerSounds = FindObjectOfType<PlayerSounds>();
-        audioSource = FindObjectOfType<AudioSource>();
+      
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -20,22 +20,22 @@ public class PowerUps : MonoBehaviour
         {
             Time.timeScale = 1.5f;
             StartCoroutine(ReturnTime());
-            audioSource.PlayOneShot(powerUpSFX);
+            AudioSource.PlayClipAtPoint(powerUpSFX, Camera.main.transform.position);
         }
         else if (other.gameObject.tag == "Gold Clock")
         {
             timer.AddFiveSecondsToTimer();
-            audioSource.PlayOneShot(powerUpSFX);
+            AudioSource.PlayClipAtPoint(powerUpSFX, Camera.main.transform.position);
         }
         else if (other.gameObject.tag == "Black Clock")
         {
             timer.TakeFiveSecondsFromTimer();
-            audioSource.PlayOneShot(powerUpSFX);
+            AudioSource.PlayClipAtPoint(powerUpSFX, Camera.main.transform.position);
         }
         else if (other.gameObject.tag == "Pickaxe" && playerSounds.hitCounter == 1)
         {
             playerSounds.hitCounter--;
-            audioSource.PlayOneShot(powerUpSFX);
+            AudioSource.PlayClipAtPoint(powerUpSFX, Camera.main.transform.position);
         }
         
     }

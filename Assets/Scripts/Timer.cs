@@ -6,11 +6,14 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] TMP_Text timerText;
+    public TMP_Text timerText;
     private float startTime;
 
     [SerializeField] PlayerMovement playerMovement;
 
+    [SerializeField] TMP_Text scoreText;
+    string timer;
+    
     void Start()
     {
         startTime = Time.time;
@@ -18,13 +21,14 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        //if (playerMovement.timerForTimer)
-       // {
+        if (playerMovement.alive)
+        {
             float t = Time.time - startTime;
 
             string minutes = ((int)t / 60).ToString();
             string seconds = (t % 60).ToString("f2");
 
+           
             timerText.text = minutes + ":" + seconds;
 
             if ((int)playerMovement.moveSpeed == 30)
@@ -34,7 +38,8 @@ public class Timer : MonoBehaviour
                 if (((int)t / 600) % 13 == 0)//random brojevi da sta vise usporin ubrzavanje
                     playerMovement.moveSpeed += playerMovement.speedIncreasePerSeconds;
             }
-        //}
+         } 
+        timer = timerText.text;
     }
 
     public void AddFiveSecondsToTimer()
@@ -45,5 +50,10 @@ public class Timer : MonoBehaviour
     public void TakeFiveSecondsFromTimer()
     {
         startTime += 5;
+    }
+
+    public void PrintScore()
+    {
+        scoreText.text = timer;
     }
 }

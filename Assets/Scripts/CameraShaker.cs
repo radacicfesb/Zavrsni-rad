@@ -12,15 +12,17 @@ public class CameraShaker : MonoBehaviour
     Vector3 startingPos;
 
     float jumpInput;
-
+    PlayerMovement playerMovement;
     void Start()
     {
         startingPos = transform.position;
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     
     void Update()
     {
+        if (!playerMovement.alive) return;
         jumpInput = Input.GetAxis("Jump");
         if (Mathf.Abs(jumpInput) > Mathf.Epsilon) return;
 

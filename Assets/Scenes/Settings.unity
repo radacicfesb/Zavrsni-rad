@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   volumeSlider: {fileID: 840255044780900864}
-  defaultVolume: 0.3
+  defaultVolume: 0.15
 --- !u!4 &1992164137
 Transform:
   m_ObjectHideFlags: 0
@@ -1398,6 +1398,14 @@ PrefabInstance:
     - target: {fileID: 840255044335905942, guid: 8611d04069795f54e85e96fe7edafc40, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 840255044335905942, guid: 8611d04069795f54e85e96fe7edafc40, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.9000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 840255044335905942, guid: 8611d04069795f54e85e96fe7edafc40, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 840255045134847099, guid: 8611d04069795f54e85e96fe7edafc40, type: 3}
       propertyPath: m_AnchorMax.y

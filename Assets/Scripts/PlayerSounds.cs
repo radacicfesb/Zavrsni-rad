@@ -6,6 +6,7 @@ public class PlayerSounds : MonoBehaviour
 {
     [SerializeField] AudioClip jumpingSFX;
     [SerializeField] AudioClip ouchSFX;
+   // [SerializeField] AudioClip deathSFX;
     AudioSource audios;
 
     [SerializeField]  LayerMask groundLayer;
@@ -26,6 +27,7 @@ public class PlayerSounds : MonoBehaviour
 
     void Update()
     {
+        if (!playerMovement.alive) audios.Stop();
         jumpInput = Input.GetButtonDown("Jump");
        
 
@@ -39,6 +41,7 @@ public class PlayerSounds : MonoBehaviour
     }
     void GroundCheck(bool landing)
     {
+        if (!playerMovement.alive) return;
         onground = Physics.CheckSphere(myBody.transform.position, 5f, groundLayer);
         if(landing)
             audios.Play();
@@ -47,22 +50,18 @@ public class PlayerSounds : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!playerMovement.alive) return;
         if (collision.gameObject.tag == "Obstacle")
         {
             hitCounter++;
             if (hitCounter == 1)
                 AudioSource.PlayClipAtPoint(ouchSFX, Camera.main.transform.position);
             if (hitCounter == 2)
-                //odsviraj neki zvuk ka da je umra ili tako nesto
+            {
+                AudioSource.PlayClipAtPoint(ouchSFX, Camera.main.transform.position);
                 playerMovement.Die();
+            }
         }
 
     }
-
-   // private void OnTriggerEnter(Collider other)
-    //{
-
-      //  if (other.gameObject.tag == "Pickaxe" && hitCounter == 1) //i nema nijedan pickaxe u intventoryu
-        //    hitCounter--;
-    //}
 }
