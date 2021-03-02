@@ -13,20 +13,23 @@ public class Timer : MonoBehaviour
 
     [SerializeField] TMP_Text scoreText;
     string timer;
-    
+    //float t;
+
+    PlayFabLogin1 playfab;
     void Start()
     {
         startTime = Time.time;
+        playfab = FindObjectOfType<PlayFabLogin1>();
     }
 
     void Update()
     {
         if (playerMovement.alive)
         {
-            float t = Time.time - startTime;
+           float t = Time.time - startTime;
 
             string minutes = ((int)t / 60).ToString();
-            string seconds = (t % 60).ToString("f2");
+            string seconds = (t % 60).ToString("f0");
 
            
             timerText.text = minutes + ":" + seconds;
@@ -40,6 +43,7 @@ public class Timer : MonoBehaviour
             }
          } 
         timer = timerText.text;
+        playfab.playerHighScore = (int)(Time.time - startTime);
     }
 
     public void AddFiveSecondsToTimer()

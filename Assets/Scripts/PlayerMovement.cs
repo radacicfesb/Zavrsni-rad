@@ -21,9 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject scoreCanvas;
     Timer timer;
 
+    PlayFabLogin1 playfab;
+
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
+        playfab = FindObjectOfType<PlayFabLogin1>();
     }
    
     private void FixedUpdate()//zovemo fixed update jer se zove 50 puta u sekundi da bi malo bolju kontrolu nad fizikon
@@ -59,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
         scoreCanvas.SetActive(true);
         timer.PrintScore();
         Cursor.lockState = CursorLockMode.None;
+        playfab.SetStats();
+
     }
 
 }

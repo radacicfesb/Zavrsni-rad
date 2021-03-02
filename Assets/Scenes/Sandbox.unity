@@ -220,6 +220,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6915207573984178821, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
   m_PrefabInstance: {fileID: 2142626869}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &403275097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 403275097, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
+  m_PrefabInstance: {fileID: 2142626869}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &609827728
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,15 +380,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1250488141 stripped
+--- !u!114 &961476698 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6965910956413595110, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
+  m_CorrespondingSourceObject: {fileID: 961476698, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
   m_PrefabInstance: {fileID: 2081387423}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d25062f2da01ffd4288180495d26d428, type: 3}
+  m_Script: {fileID: 11500000, guid: 05417c349b6f94c498445cefccb1c9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2081387423
@@ -387,14 +398,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 961476698, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
+      propertyPath: loginCanvas
+      value: 
+      objectReference: {fileID: 338917306}
+    - target: {fileID: 961476698, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
+      propertyPath: usernameTakenText
+      value: 
+      objectReference: {fileID: 403275097}
     - target: {fileID: 6965910956413595105, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
       propertyPath: m_Name
       value: PlayFabLogin
       objectReference: {fileID: 0}
-    - target: {fileID: 6965910956413595110, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
-      propertyPath: loginCanvas
-      value: 
-      objectReference: {fileID: 338917306}
     - target: {fileID: 6965910956413595111, guid: 4ac30faff2a10474e97e1891773a5c53, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -448,38 +463,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 403275095, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 403275097, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6915207572193217083, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1250488141}
-    - target: {fileID: 6915207572193217083, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnClickLogin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6915207572748737406, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1250488141}
-    - target: {fileID: 6915207572748737406, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetUserEmail
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 961476698}
     - target: {fileID: 6915207572828813190, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1250488141}
-    - target: {fileID: 6915207572828813190, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetUsername
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 961476698}
     - target: {fileID: 6915207572981214565, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1250488141}
-    - target: {fileID: 6915207572981214565, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetUserPassword
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 961476698}
     - target: {fileID: 6915207573984178817, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
