@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         timer.PrintScore();
         Cursor.lockState = CursorLockMode.None;
         playfab.SetStats();
+        playfab.StartCloudUpdatePlayerStats();
 
     }
 

@@ -5,6 +5,7 @@ using TMPro;
 using PlayFab.DataModels;
 using PlayFab.ProfilesModels;
 using System.Collections.Generic;
+using PlayFab.Json;
 
 public class PlayFabLogin1 : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class PlayFabLogin1 : MonoBehaviour
     private string userEmail;//ovo posli izbaci
     private string userPassword;//ovo posli izbaci
     private string username;
-    public GameObject loginCanvas;
+    
     public TMP_Text usernameTakenText;
     public GameObject mainMenuCanvas;
+    PlayerMovement playerMovement;
+    
     //public List<string, float> StatsUpdate  = new List
     private void OnEnable()
     {
@@ -35,6 +38,7 @@ public class PlayFabLogin1 : MonoBehaviour
 
     public void Start()
     {
+        playerMovement = FindObjectOfType<PlayerMovement>();
         //Note: Setting title Id here can be skipped if you have set the value in Editor Extensions already.
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
         {
@@ -101,9 +105,16 @@ public class PlayFabLogin1 : MonoBehaviour
         PlayerPrefs.SetString("USERNAME", username);
         //PlayerPrefs.SetString("EMAIL", userEmail);
         PlayerPrefs.SetString("PASSWORD", userPassword);
+
+        PlayFabClientAPI.UpdateUserTitleDisplayName(new UpdateUserTitleDisplayNameRequest { DisplayName = username }, OnDisplayName, OnRegisterFailure);
         loginCanvas.SetActive(false);
         mainMenuCanvas.SetActive(true);
         GetStats();
+    }
+
+    void OnDisplayName(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log(result.DisplayName + " is your new display name");
     }
 
     private void OnLoginFailure(PlayFabError error)
@@ -198,6 +209,80 @@ public class PlayFabLogin1 : MonoBehaviour
             
     }
 
+    // Build the request object and access the API
+    public void StartCloudUpdatePlayerStats()
+    {
+        PlayFabClientAPI.ExecuteCloudScript(new ExecuteCloudScriptRequest()
+        {
+            FunctionName = "UpdatePlayerStats", // Arbitrary function name (must exist in your uploaded cloud.js file)
+            FunctionParameter = new { highScore = playerHighScore }, // The parameter provided to your function
+            GeneratePlayStreamEvent = true, // Optional - Shows this event in PlayStream
+        }, OnCloudUpdateStats, OnErrorShared);
+    }
+    // OnCloudHelloWorld defined in the next code block
+
+    private static void OnCloudUpdateStats(ExecuteCloudScriptResult result)
+    {
+        // CloudScript returns arbitrary results, so you have to evaluate them one step and one parameter at a time
+        Debug.Log(PlayFab.PluginManager.GetPlugin<ISerializerPlugin>(PluginContract.PlayFab_Serializer));
+        JsonObject jsonResult = (JsonObject)result.FunctionResult;
+        object messageValue;
+        jsonResult.TryGetValue("messageValue", out messageValue); // note how "messageValue" directly corresponds to the JSON values set in CloudScript
+        Debug.Log((string)messageValue);
+    }
+
+    private static void OnErrorShared(PlayFabError error)
+    {
+        Debug.Log(error.GenerateErrorReport());
+    }
+
     #endregion PlayerStats
+
+    public GameObject leaderboardCanvas;
+    public GameObject listingPrefab;
+    public Transform listingContainer;
+    public GameObject loginCanvas;
+    #region Leaderboard
+
+    public void GetLeaderboard()
+    {
+        //leaderboardCanvas.SetActive(true);
+
+        var requestLeaderboard = new GetLeaderboardRequest { StartPosition = 0, StatisticName = "playerHighScore", MaxResultsCount = 20 };
+        PlayFabClientAPI.GetLeaderboard(requestLeaderboard, OnGetLeaderboard, OnErrorLeaderboard);
+    }
+
+    void OnGetLeaderboard(GetLeaderboardResult result)
+    {
+        leaderboardCanvas.SetActive(true);
+        playerMovement.scoreCanvas.SetActive(false);
+        
+        //Debug.LogError(result.Leaderboard[0].StatValue);
+        foreach (PlayerLeaderboardEntry player in result.Leaderboard)
+        {
+            GameObject tempListing = Instantiate(listingPrefab, listingContainer);
+            LeaderboardListing LL = tempListing.GetComponent<LeaderboardListing>();
+            LL.playerNameText.text = player.DisplayName;
+            LL.playerScoreText.text = ((player.StatValue) / 60 + ":" + (player.StatValue) % 60).ToString();
+            Debug.Log(player.DisplayName + ": " + (player.StatValue) / 60 + ":" + (player.StatValue) % 60);
+        }
+    }
+
+    public void CloseLeaderboardCanvas()
+    {
+        leaderboardCanvas.SetActive(false);
+        playerMovement.scoreCanvas.SetActive(true);
+        for(int i = listingContainer.childCount - 1; i >= 0; i--)
+        {
+            Destroy(listingContainer.GetChild(i).gameObject);
+        }
+    }
+
+    void OnErrorLeaderboard(PlayFabError error)
+    {
+        Debug.LogError(error.GenerateErrorReport());
+    }
+
+    #endregion Leaderboard
 }
 

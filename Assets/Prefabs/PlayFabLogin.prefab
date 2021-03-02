@@ -43,7 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05417c349b6f94c498445cefccb1c9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loginCanvas: {fileID: 0}
-  usernameTakenText: {fileID: 0}
-  mainMenuCanvas: {fileID: 0}
+  loginCanvas: {fileID: 6915207573984178821, guid: 85ea8bb874dd40e488386aad3e8ce829, type: 3}
+  usernameTakenText: {fileID: 1691642728216586941, guid: 060202a734faba04bb2f2339ff268419, type: 3}
+  mainMenuCanvas: {fileID: 2714117696718653168, guid: 875e687d2ea96564eb8263adca99b2eb, type: 3}
   playerHighScore: 0
+  leaderboardCanvas: {fileID: 1979001925853204216, guid: 55cfa41677f60dc4482e1a650975ab12, type: 3}
+  listingPrefab: {fileID: 6220981871489249133, guid: 983bcb26e33e0814a856bbe47d396d26, type: 3}
+  listingContainer: {fileID: 0}
