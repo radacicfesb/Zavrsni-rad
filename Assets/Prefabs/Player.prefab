@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 500
-  player: {fileID: 6346442695165741731}
+  cam: {fileID: 963194228}
 --- !u!114 &95322145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +144,148 @@ CapsuleCollider:
   m_Height: 1.070056
   m_Direction: 1
   m_Center: {x: -0.036368784, y: 0.5202203, z: -1.1119478e-17}
+--- !u!82 &228385380
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346442695165961923}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a870028546852124cbabca99993832da, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &228385376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346442695165961923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f94d9b77215fda4b99a22cf3b0cdea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 2397748814164442562, guid: 499bf8bd1be954645b58802b0723107c, type: 3}
+  playerMovement: {fileID: 1964363513}
+  scoreText: {fileID: 1808877784322292380, guid: c4c12ce7bc0df1b4b90f70106cb18a95, type: 3}
+--- !u!114 &228385378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346442695165961923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6272768ef5e46894e9a078d30efa1f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpSFX: {fileID: 8300000, guid: d04ea372c9829384481825a5c56e06ea, type: 3}
+--- !u!114 &228385382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346442695165961923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac38818f943fac4cb326414f323df73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpingSFX: {fileID: 8300000, guid: cfd5b14b548af4549a93d9d0e51a54f7, type: 3}
+  ouchSFX: {fileID: 8300000, guid: d652c7b9e59322b48b7f73d62c1810a2, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  hitCounter: 0
 --- !u!114 &1964363513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +302,9 @@ MonoBehaviour:
   myRigidbody: {fileID: 1964363512}
   horizontalFactor: 1.7
   jumpSpeed: 9
+  alive: 1
+  speedIncreasePerSeconds: 0.001
+  scoreCanvas: {fileID: 8889306859128247480, guid: 5a7135bc3f369b84c99240e4447bac2a, type: 3}
 --- !u!1001 &6346442695165909143
 PrefabInstance:
   m_ObjectHideFlags: 0

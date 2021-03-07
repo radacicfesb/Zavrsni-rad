@@ -15,11 +15,11 @@ public class Timer : MonoBehaviour
     string timer;
     //float t;
 
-    PlayFabLogin1 playfab;
+    PlayfabController playfab;
     void Start()
     {
         startTime = Time.time;
-        playfab = FindObjectOfType<PlayFabLogin1>();
+        playfab = FindObjectOfType<PlayfabController>();
     }
 
     void Update()

@@ -6,96 +6,84 @@ using PlayFab.DataModels;
 using PlayFab.ProfilesModels;
 using System.Collections.Generic;
 using PlayFab.Json;
+using UnityEngine.SceneManagement;
 
-public class PlayFabLogin1 : MonoBehaviour
+public class PlayfabController : MonoBehaviour
 {
-    public static PlayFabLogin1 PFC;//pfc == playfab controller
+    public static PlayfabController PFC;//pfc == playfab controller
 
-    private string userEmail;//ovo posli izbaci
-    private string userPassword;//ovo posli izbaci
+    
+    private string userPassword;
     private string username;
-    
+
+    public GameObject menuCanvas;
+    public GameObject loginCanvas;
+
     public TMP_Text usernameTakenText;
-    public GameObject mainMenuCanvas;
-    PlayerMovement playerMovement;
-    
-    //public List<string, float> StatsUpdate  = new List
-    private void OnEnable()
+
+    string currentSceneName;
+    private void Awake()
     {
-        if(PlayFabLogin1.PFC == null)
+        if (PFC == null)
         {
-            PlayFabLogin1.PFC = this;
+            PFC = this;
         }
         else
         {
-            if(PlayFabLogin1.PFC != this)
+            if (PFC != this)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Start()
     {
-        playerMovement = FindObjectOfType<PlayerMovement>();
+
         //Note: Setting title Id here can be skipped if you have set the value in Editor Extensions already.
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
         {
             PlayFabSettings.TitleId = "E8F0E"; // Please change this value to your own titleId from PlayFab Game Manager
         }
-        //PlayerPrefs.DeleteAll();//mskni posli
-        //var request = new LoginWithCustomIDRequest { CustomId = "GettingStartedGuide", CreateAccount = true };
-        // PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+        PlayerPrefs.DeleteAll();//mskni posli
+       
         if (PlayerPrefs.HasKey("USERNAME"))
         {
-            //userEmail = PlayerPrefs.GetString("EMAIL");
+           
             userPassword = PlayerPrefs.GetString("PASSWORD");
             username = PlayerPrefs.GetString("USERNAME");
-            //var request = new LoginWithEmailAddressRequest { Email = userEmail, Password = userPassword };
+           
             var request = new LoginWithPlayFabRequest { Username = username, Password = userPassword, };
             PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess, OnLoginFailure);
 
         }
-        /* else
-         {
- #if UNITY_ANDROID
-             var requestAndroid = new LoginWithAndroidDeviceIDRequest {AndroidDeviceId = ReturnMpboleID(), CreateAccount = true};
-             PlayFabClientAPI.LoginWithAndroidDeviceID(requestAndroid, OnLoginMobileSuccess, OnLoginMobileFailure);
- #endif
- #if UNITY_IOS
-             var requestIOS = new LoginWithIOSDeviceIDRequest {DeviceId = ReturnMobileID, CreateAccount - true};
-             PlayFabClientAPI.LoginWithIOSDeviceID(requestIOS, OnLoginMobileSuccess, OnLoginMobileFailure);
- #endif
-         }*/
+
     }
 
-    /* private void OnLoginMobileSuccess(LoginResult result)//login mi ne triba
-     {
-         Debug.Log("Congratulations, you made your first successful API call!");
-         loginCanvas.SetActive(false);
-     }
+    private void Update()
+    {
+        currentSceneName = SceneManager.GetActiveScene().name;
 
-     private void OnLoginMobileFailure(PlayFabError error)//ne triba
-     {
-         Debug.Log(error.GenerateErrorReport());
-     }
-
-     public static string ReturnMobileID()
-     {
-         string deviceID = SystemInfo.deviceUniqueIdentifier;
-         return deviceID;
-     }*/
+        if(currentSceneName == "GameScene")
+        {
+            menuCanvas.SetActive(false);
+        }
+        else if (currentSceneName == "MainMenu")
+        {
+            menuCanvas.SetActive(true);
+        }
+    }
 
     #region Login
     private void OnLoginSuccess(LoginResult result)
     {
         Debug.Log("Congratulations, you made your first successful API call!");
         PlayerPrefs.SetString("USERNAME", username);
-        //PlayerPrefs.SetString("EMAIL", userEmail);
+       
         PlayerPrefs.SetString("PASSWORD", userPassword);
         loginCanvas.SetActive(false);
-        mainMenuCanvas.SetActive(true);
+        menuCanvas.SetActive(true);
         GetStats();//mozda bude tribalo micat
     }
 
@@ -103,12 +91,12 @@ public class PlayFabLogin1 : MonoBehaviour
     {
         Debug.Log("Congratulations, you made your first successful API call!");
         PlayerPrefs.SetString("USERNAME", username);
-        //PlayerPrefs.SetString("EMAIL", userEmail);
+        
         PlayerPrefs.SetString("PASSWORD", userPassword);
 
         PlayFabClientAPI.UpdateUserTitleDisplayName(new UpdateUserTitleDisplayNameRequest { DisplayName = username }, OnDisplayName, OnRegisterFailure);
         loginCanvas.SetActive(false);
-        mainMenuCanvas.SetActive(true);
+        menuCanvas.SetActive(true);
         GetStats();
     }
 
@@ -119,30 +107,28 @@ public class PlayFabLogin1 : MonoBehaviour
 
     private void OnLoginFailure(PlayFabError error)
     {
-        
+
         if (error.ToString().Contains("AccountNotFound"))
             //Debug.Log("available");
-            usernameTakenText.text = "";
-        else 
+           usernameTakenText.text = "";
+        else
         {
             usernameTakenText.text = "Username is taken";
             Invoke("RemoveTakenText", 2f);
+            Debug.Log("taken");
         }
-        //Debug.Log("taken");
+       
         var registerRequest = new RegisterPlayFabUserRequest { Username = username, Password = userPassword, RequireBothUsernameAndEmail = false };//{ Email = userEmail, Password = userPassword, Username = username };
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSuccess, OnRegisterFailure);
     }
 
     private void OnRegisterFailure(PlayFabError error)
     {
-       
+
         Debug.LogError(error.GenerateErrorReport());
     }
 
-    public void GetUserEmail(string emailIn)//ne triba
-    {
-        userEmail = emailIn;
-    }
+    
 
     public void GetUserPassword(string passwordIn)
     {
@@ -154,21 +140,24 @@ public class PlayFabLogin1 : MonoBehaviour
         username = usernameIn;
     }
 
-    public void OnClickLogin()//ne triba
+    public void OnClickLogin()
     {
-        //var request = new LoginWithEmailAddressRequest { Email = userEmail, Password = userPassword };
-        //PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+        
         var request = new LoginWithPlayFabRequest { Username = username, Password = userPassword };
         PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess, OnLoginFailure);
+        //loginCanvas.SetActive(false);
+        //menuCanvas.SetActive(true);
     }
 
-   public void RemoveTakenText()
+    public void RemoveTakenText()
     {
         usernameTakenText.text = "";
     }
-    #endregion
+
+    #endregion Login
 
     public float playerHighScore;
+
     #region PlayerStats
 
     public void SetStats()
@@ -206,7 +195,7 @@ public class PlayFabLogin1 : MonoBehaviour
                     break;
             }
         }
-            
+
     }
 
     // Build the request object and access the API
@@ -237,52 +226,4 @@ public class PlayFabLogin1 : MonoBehaviour
     }
 
     #endregion PlayerStats
-
-    public GameObject leaderboardCanvas;
-    public GameObject listingPrefab;
-    public Transform listingContainer;
-    public GameObject loginCanvas;
-    #region Leaderboard
-
-    public void GetLeaderboard()
-    {
-        //leaderboardCanvas.SetActive(true);
-
-        var requestLeaderboard = new GetLeaderboardRequest { StartPosition = 0, StatisticName = "playerHighScore", MaxResultsCount = 20 };
-        PlayFabClientAPI.GetLeaderboard(requestLeaderboard, OnGetLeaderboard, OnErrorLeaderboard);
-    }
-
-    void OnGetLeaderboard(GetLeaderboardResult result)
-    {
-        leaderboardCanvas.SetActive(true);
-        playerMovement.scoreCanvas.SetActive(false);
-        
-        //Debug.LogError(result.Leaderboard[0].StatValue);
-        foreach (PlayerLeaderboardEntry player in result.Leaderboard)
-        {
-            GameObject tempListing = Instantiate(listingPrefab, listingContainer);
-            LeaderboardListing LL = tempListing.GetComponent<LeaderboardListing>();
-            LL.playerNameText.text = player.DisplayName;
-            LL.playerScoreText.text = ((player.StatValue) / 60 + ":" + (player.StatValue) % 60).ToString();
-            Debug.Log(player.DisplayName + ": " + (player.StatValue) / 60 + ":" + (player.StatValue) % 60);
-        }
-    }
-
-    public void CloseLeaderboardCanvas()
-    {
-        leaderboardCanvas.SetActive(false);
-        playerMovement.scoreCanvas.SetActive(true);
-        for(int i = listingContainer.childCount - 1; i >= 0; i--)
-        {
-            Destroy(listingContainer.GetChild(i).gameObject);
-        }
-    }
-
-    void OnErrorLeaderboard(PlayFabError error)
-    {
-        Debug.LogError(error.GenerateErrorReport());
-    }
-
-    #endregion Leaderboard
 }
-

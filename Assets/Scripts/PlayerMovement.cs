@@ -21,12 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject scoreCanvas;
     Timer timer;
 
-    PlayFabLogin1 playfab;
+    PlayfabController playfab;
 
     private void Start()
     {
         timer = FindObjectOfType<Timer>();
-        playfab = FindObjectOfType<PlayFabLogin1>();
+        playfab = FindObjectOfType<PlayfabController>();
     }
    
     private void FixedUpdate()//zovemo fixed update jer se zove 50 puta u sekundi da bi malo bolju kontrolu nad fizikon

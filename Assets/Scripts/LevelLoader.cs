@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     int currentSceneIndex;
-
+    //[SerializeField] GameObject menuCanvas;
     PlayerMovement playerMovement;
+    
+    string currentScene;
     void Start()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -15,7 +17,17 @@ public class LevelLoader : MonoBehaviour
             StartCoroutine(LoadStartScene());
         }
         playerMovement = FindObjectOfType<PlayerMovement>();
+        //playfab = FindObjectOfType<PlayFabLogin1>();
     }
+
+    // void Update()
+    //{
+    //    currentScene = SceneManager.GetActiveScene().name;
+     //   if(currentScene == "GameScene")
+     //   {
+      //      menuCanvas.SetActive(false);
+       // }
+  //  }
 
     IEnumerator LoadStartScene()
     {
@@ -25,12 +37,16 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextScene()
     {
+        //playfab.loginCanvas.SetActive(true);
         SceneManager.LoadScene(currentSceneIndex + 1);
+        //menuCanvas.SetActive(true);
     }
 
     public void LoadGameScene()
     {
+        //menuCanvas.SetActive(false);
         SceneManager.LoadScene("GameScene");
+        
     }
 
     public void QuitGame()
@@ -55,7 +71,21 @@ public class LevelLoader : MonoBehaviour
 
     public void TryAgainButton()
     {
-        playerMovement.scoreCanvas.SetActive(false);
+        //playerMovement.scoreCanvas.SetActive(false);
+        //playfab.loginCanvas.SetActive(false);
         SceneManager.LoadScene("GameScene");
+        //menuCanvas.SetActive(false);
+    }
+
+    public void MainMenuButton()
+    {
+        
+        SceneManager.LoadScene("MainMenu");
+        //menuCanvas.SetActive(true);
+    }
+
+    public void LeaderBoardButton()
+    {
+        SceneManager.LoadScene("Leaderboard");
     }
 }
