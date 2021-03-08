@@ -34,8 +34,8 @@ public class Timer : MonoBehaviour
            
             timerText.text = minutes + ":" + seconds;
 
-            if ((int)playerMovement.moveSpeed == 30)
-                playerMovement.moveSpeed = 30;
+            if ((int)playerMovement.moveSpeed == 25)
+                playerMovement.moveSpeed = 25;
             else
             {
                 if (((int)t / 600) % 13 == 0)//random brojevi da sta vise usporin ubrzavanje
