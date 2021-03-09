@@ -20,7 +20,6 @@ public class HeadMovement : MonoBehaviour//najvjerojatnije cu ovu skriptu maknit
     void Update()
     {
         if (!playerMovement.alive) return;
-       // float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;//dobivamo informaciju di je mis neovisno o frame rateu na osi x
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;//dobivamo informaciju di je mis neovisno o frame rateu na osi y
  
         xRotation -= mouseY;

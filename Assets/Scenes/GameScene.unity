@@ -848,6 +848,18 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 328873497}
+    - target: {fileID: 963194228, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.951
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194228, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.339
+      objectReference: {fileID: 0}
     - target: {fileID: 1964363513, guid: adde46af4c39d3b49ab286613cb6dd81, type: 3}
       propertyPath: scoreCanvas
       value: 

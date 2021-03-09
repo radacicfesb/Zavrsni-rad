@@ -13,7 +13,6 @@ public class Timer : MonoBehaviour
 
     [SerializeField] TMP_Text scoreText;
     string timer;
-    //float t;
 
     PlayfabController playfab;
     void Start()
@@ -31,6 +30,8 @@ public class Timer : MonoBehaviour
             string minutes = ((int)t / 60).ToString();
             string seconds = (t % 60).ToString("f0");
 
+            if (seconds == "60")
+                seconds = "0";
            
             timerText.text = minutes + ":" + seconds;
 

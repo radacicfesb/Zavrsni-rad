@@ -6,7 +6,7 @@ public class PlayerSounds : MonoBehaviour
 {
     [SerializeField] AudioClip jumpingSFX;
     [SerializeField] AudioClip ouchSFX;
-   // [SerializeField] AudioClip deathSFX;
+
     AudioSource audios;
 
     [SerializeField]  LayerMask groundLayer;

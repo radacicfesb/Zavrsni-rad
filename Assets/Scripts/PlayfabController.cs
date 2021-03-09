@@ -46,7 +46,7 @@ public class PlayfabController : MonoBehaviour
         {
             PlayFabSettings.TitleId = "E8F0E"; // Please change this value to your own titleId from PlayFab Game Manager
         }
-        PlayerPrefs.DeleteAll();//mskni posli
+        PlayerPrefs.DeleteAll();
        
         if (PlayerPrefs.HasKey("USERNAME"))
         {
@@ -84,7 +84,7 @@ public class PlayfabController : MonoBehaviour
         PlayerPrefs.SetString("PASSWORD", userPassword);
         loginCanvas.SetActive(false);
         menuCanvas.SetActive(true);
-        GetStats();//mozda bude tribalo micat
+        GetStats();
     }
 
     private void OnRegisterSuccess(RegisterPlayFabUserResult result)
@@ -95,6 +95,7 @@ public class PlayfabController : MonoBehaviour
         PlayerPrefs.SetString("PASSWORD", userPassword);
 
         PlayFabClientAPI.UpdateUserTitleDisplayName(new UpdateUserTitleDisplayNameRequest { DisplayName = username }, OnDisplayName, OnRegisterFailure);
+        usernameTakenText.text = "";
         loginCanvas.SetActive(false);
         menuCanvas.SetActive(true);
         GetStats();
@@ -109,7 +110,6 @@ public class PlayfabController : MonoBehaviour
     {
 
         if (error.ToString().Contains("AccountNotFound"))
-            //Debug.Log("available");
            usernameTakenText.text = "";
         else
         {
@@ -118,7 +118,7 @@ public class PlayfabController : MonoBehaviour
             Debug.Log("taken");
         }
        
-        var registerRequest = new RegisterPlayFabUserRequest { Username = username, Password = userPassword, RequireBothUsernameAndEmail = false };//{ Email = userEmail, Password = userPassword, Username = username };
+        var registerRequest = new RegisterPlayFabUserRequest { Username = username, Password = userPassword, RequireBothUsernameAndEmail = false };
         PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSuccess, OnRegisterFailure);
     }
 
@@ -141,12 +141,9 @@ public class PlayfabController : MonoBehaviour
     }
 
     public void OnClickLogin()
-    {
-        
+    {  
         var request = new LoginWithPlayFabRequest { Username = username, Password = userPassword };
         PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess, OnLoginFailure);
-        //loginCanvas.SetActive(false);
-        //menuCanvas.SetActive(true);
     }
 
     public void RemoveTakenText()
