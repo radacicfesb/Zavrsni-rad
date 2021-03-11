@@ -31,7 +31,11 @@ public class Timer : MonoBehaviour
             string seconds = (t % 60).ToString("f0");
 
             if (seconds == "60")
+            {
                 seconds = "0";
+                minutes = (((int)t / 60) + 1).ToString();
+            }
+               
            
             timerText.text = minutes + ":" + seconds;
 

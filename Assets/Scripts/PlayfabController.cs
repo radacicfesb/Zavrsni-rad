@@ -113,7 +113,7 @@ public class PlayfabController : MonoBehaviour
            usernameTakenText.text = "";
         else
         {
-            usernameTakenText.text = "Username is taken";
+            usernameTakenText.text = "Username is officially taken";
             Invoke("RemoveTakenText", 2f);
             Debug.Log("taken");
         }
