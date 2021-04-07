@@ -19,7 +19,7 @@ public class GroundTile : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         pathSpawner.SpawnTiles(true);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1f);
     }
 
     void Update()
