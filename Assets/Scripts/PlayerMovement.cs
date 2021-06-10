@@ -33,10 +33,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!alive) return;
 
-        Vector3 forwardMove = transform.forward * moveSpeed * Time.fixedDeltaTime;//micemo se 5 polja svaku sekundu a ne svaki frame
+        Vector3 forwardMove = transform.forward * moveSpeed * Time.fixedDeltaTime;                                                                              //micemo se 5 polja svaku sekundu a ne svaki frame
         Vector3 horizontalMove = transform.right * horizontalInput * moveSpeed * Time.fixedDeltaTime * horizontalFactor;
         Vector3 jumpMove = transform.up * jumpInput * jumpSpeed * Time.fixedDeltaTime;
-        Vector3 direction = (myRigidbody.position + forwardMove + horizontalMove + jumpMove);//rijesen problem s colliderima, sad ne moze proc livo i desno od onog sta je zacrtano
+        Vector3 direction = (myRigidbody.position + forwardMove + horizontalMove + jumpMove);                                                                        //rijesen problem s colliderima, sad ne moze proc livo i desno od onog sta je zacrtano
         direction.x = Mathf.Clamp(direction.x, -4.5f, 4.5f);
         myRigidbody.MovePosition(direction);
         
